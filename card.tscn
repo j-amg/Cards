@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://blwgspwpixv4g"]
+
+[ext_resource type="Script" uid="uid://1cftjqc7xbqr" path="res://card.gd" id="1_kikvd"]
+
+[node name="card" type="PanelContainer" unique_id=225691580]
+custom_minimum_size = Vector2(128, 192)
+custom_maximum_size = Vector2(128, 192)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -192.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_visual_only = false
+script = ExtResource("1_kikvd")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1654737426]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2023508256]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=280726919]
+layout_mode = 2
+alignment = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1560155213]
+layout_mode = 2
+
+[node name="initiative" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer" unique_id=1041801384]
+layout_mode = 2
+text = "82"
+
+[node name="name" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1607826812]
+layout_mode = 2
+text = "Card Name"
+
+[node name="description" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1222605221]
+layout_mode = 2
+text = "Card Description"
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
