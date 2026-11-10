@@ -17,7 +17,7 @@ func _on_mouse_exited() -> void: emit_signal("card_exit", self)
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.pressed:
+		if event.button_index == 1 && event.pressed:
 			emit_signal("card_input", self)
 
 func set_data(card: Card_data) -> void:

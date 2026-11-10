@@ -3,14 +3,17 @@ extends Control
 @onready var player_hand_pos: Control = $player_hand
 var selected_card: Card
 var card_scene = preload("res://card.tscn")
-var card_distance = 150
+var card_distance = 75
+var card_rotation = 5
+var hand_max_count = 15
+var last_selected_index = 0
 
 var player_hand: Array[Card] = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(5):
+	for i in range(hand_max_count):
 		add_card_to_hand(generate_card())
 		
 func _process(delta: float) -> void:
@@ -24,17 +27,29 @@ func add_card_to_hand(card_data: Card_data) -> void:
 	arrange_player_hand()
 	card.set_data(card_data)
 	card.card_input.connect(on_card_input)
+	card.card_hover.connect(on_card_hover)
+	card.card_exit.connect(on_card_exit)
+	
+func on_card_hover(card: Card) -> void:
+	card.scale = Vector2(1.25, 1.25)
+	card.z_index = 25
+
+func on_card_exit(card: Card) -> void:
+	card.scale = Vector2(1, 1)
 	
 func on_card_input(card: Card) -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "rotation", 0, 0.1)
 	var card_index = player_hand.find(card)
-	if selected_card != null:
-		player_hand.append(selected_card)
-		
+	
 	if card_index != -1: player_hand.remove_at(card_index)
 		
+	if selected_card != null:
+		player_hand.insert(card_index, selected_card)
 	
 	selected_card = card
-	selected_card.set_data(card.card_data)
+	selected_card.z_index = 20
+	last_selected_index = card_index
 	arrange_player_hand()
 	
 func arrange_player_hand() -> void:
@@ -42,13 +57,13 @@ func arrange_player_hand() -> void:
 		var tween = get_tree().create_tween()
 		
 		var card = player_hand[i]
-		tween.tween_property(card, "rotation", deg_to_rad(i  * 10), 0.1)
-		tween.tween_property(card, "position", Vector2((player_hand_pos.position.x) + ((i - (float(player_hand.size())) / 2) * card_distance), player_hand_pos.position.y - card.size.y / 2), 0.1)
-
+		var pos_x = (player_hand_pos.position.x) - card.size.x/2 + ((i - (float(player_hand.size() - 1)) / 2) * card_distance)
+		var pos_y = player_hand_pos.position.y + sin(-PI/2 +(abs(i - (float(player_hand.size() - 1)) / 2) * .25)) * 100
+		var rot = deg_to_rad((i - (float(player_hand.size() - 1)) / 2) * card_rotation)
 		
-		print("rotation" + str(player_hand[i].rotation))
-		
-	print(player_hand.size())
+		tween.tween_property(card, "rotation", rot, 0.1)
+		tween.tween_property(card, "position", Vector2(pos_x, pos_y), 0.1)
+		card.z_index = i
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -56,7 +71,7 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == 2 && event.pressed:
 			print("left press")
 			if selected_card != null:
-				player_hand.append(selected_card)
+				player_hand.insert(last_selected_index, selected_card)
 				selected_card = null
 				arrange_player_hand()
 				

@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://1cftjqc7xbqr" path="res://card.gd" id="1_kikvd"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kikvd"]
+shadow_size = 11
+
 [node name="card" type="PanelContainer" unique_id=225691580]
 custom_minimum_size = Vector2(128, 192)
 custom_maximum_size = Vector2(128, 192)
@@ -18,6 +21,7 @@ grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
 offset_transform_enabled = true
 offset_transform_visual_only = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_kikvd")
 script = ExtResource("1_kikvd")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1654737426]
