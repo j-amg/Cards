@@ -3,7 +3,7 @@ extends Control
 @onready var player_hand_pos: Control = $player_hand
 var selected_card: Card
 var card_scene = preload("res://card.tscn")
-var card_distance = 128
+var card_distance = 150
 
 var player_hand: Array[Card] = []
 
@@ -30,8 +30,7 @@ func on_card_input(card: Card) -> void:
 	if selected_card != null:
 		player_hand.append(selected_card)
 		
-	if card_index != 0:
-		player_hand.remove_at(card_index)
+	if card_index != -1: player_hand.remove_at(card_index)
 		
 	
 	selected_card = card
@@ -45,6 +44,8 @@ func arrange_player_hand() -> void:
 		var card = player_hand[i]
 		tween.tween_property(card, "position", Vector2((player_hand_pos.position.x) + ((i - (float(player_hand.size())) / 2) * card_distance), player_hand_pos.position.y - card.size.y / 2), 0.1)
 		print(player_hand[i].position.x)
+		
+	print(player_hand.size())
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
