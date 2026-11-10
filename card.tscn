@@ -15,6 +15,7 @@ offset_top = -192.0
 offset_right = 64.0
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 1)
 offset_transform_enabled = true
 offset_transform_visual_only = false
 script = ExtResource("1_kikvd")

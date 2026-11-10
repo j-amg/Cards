@@ -42,8 +42,11 @@ func arrange_player_hand() -> void:
 		var tween = get_tree().create_tween()
 		
 		var card = player_hand[i]
+		tween.tween_property(card, "rotation", deg_to_rad(i  * 10), 0.1)
 		tween.tween_property(card, "position", Vector2((player_hand_pos.position.x) + ((i - (float(player_hand.size())) / 2) * card_distance), player_hand_pos.position.y - card.size.y / 2), 0.1)
-		print(player_hand[i].position.x)
+
+		
+		print("rotation" + str(player_hand[i].rotation))
 		
 	print(player_hand.size())
 	
