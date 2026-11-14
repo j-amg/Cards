@@ -26,6 +26,7 @@ script = ExtResource("1_kikvd")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1654737426]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -33,13 +34,16 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2023508256]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=280726919]
 layout_mode = 2
+mouse_filter = 2
 alignment = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1560155213]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="initiative" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer" unique_id=1041801384]
 layout_mode = 2

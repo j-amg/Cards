@@ -11,9 +11,15 @@ signal card_exit(card: Card)
 @onready var initiative_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/initiative
 
 var card_data: Card_data
+var hovered: bool = false
 
-func _on_mouse_entered() -> void: emit_signal("card_hover", self)
-func _on_mouse_exited() -> void: emit_signal("card_exit", self)
+func _on_mouse_entered() -> void:
+	hovered = true
+	emit_signal("card_hover", self)
+	
+func _on_mouse_exited() -> void:
+	hovered = false
+	emit_signal("card_exit", self)
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

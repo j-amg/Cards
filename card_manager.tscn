@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfwwq55vq35rs"]
 
 [ext_resource type="Script" uid="uid://cumqf7efrtk1e" path="res://card_manager.gd" id="1_pg7g4"]
-[ext_resource type="PackedScene" uid="uid://blwgspwpixv4g" path="res://card.tscn" id="2_5bagc"]
+[ext_resource type="PackedScene" uid="uid://6rdoe0qhnmvq" path="res://card_slot.tscn" id="2_5bagc"]
 
 [node name="Control" type="Control" unique_id=1287203228]
 layout_mode = 3
@@ -13,11 +13,17 @@ grow_vertical = 2
 script = ExtResource("1_pg7g4")
 
 [node name="player_hand" type="Control" parent="." unique_id=457937585]
-anchors_preset = 0
-offset_left = 960.0
-offset_top = 542.0
-offset_right = 960.0
-offset_bottom = 542.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -100.815
+offset_bottom = -100.815
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1768814861]
 layout_mode = 1
@@ -34,13 +40,26 @@ layout_mode = 2
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" unique_id=927399926]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=762323251]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2101955741]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -96.0
+offset_right = 64.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
 
-[node name="card" parent="CenterContainer" unique_id=225691580 instance=ExtResource("2_5bagc")]
+[node name="card_slot" parent="HBoxContainer" unique_id=662050796 instance=ExtResource("2_5bagc")]
 layout_mode = 2
+mouse_filter = 0
+
+[node name="card_slot2" parent="HBoxContainer" unique_id=766205071 instance=ExtResource("2_5bagc")]
+layout_mode = 2
+mouse_filter = 0

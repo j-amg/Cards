@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://6rdoe0qhnmvq"]
+
+[ext_resource type="Script" uid="uid://b80y70hye5q2m" path="res://card_slot.gd" id="1_qx3y6"]
+
+[sub_resource type="Gradient" id="Gradient_pg7g4"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iwtuo"]
+gradient = SubResource("Gradient_pg7g4")
+width = 128
+height = 192
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="card_slot" type="TextureRect" unique_id=662050796 groups=["card_slot"]]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.25, 1.25)
+texture = SubResource("GradientTexture2D_iwtuo")
+script = ExtResource("1_qx3y6")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
